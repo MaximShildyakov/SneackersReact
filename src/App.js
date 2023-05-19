@@ -8,7 +8,7 @@ import ReactRouter from "react";
 function App() {
 
 
-  const [isVisiable, setIsVisiable] = useState(true)
+  const [isVisiable, setIsVisiable] = useState(false)
 
   const [drawerItems, setDrawerItems] = useState([])
 

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
 
 
-    const [itemsCount, setItemsCount] = useState(false)
+    const [itemsCount, setItemsCount] = useState(0)
 
     function onAddToCart(){
         setItemsCount(!itemsCount)

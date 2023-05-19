@@ -12,11 +12,11 @@ function App() {
 
   const [drawerItems, setDrawerItems] = useState([])
 
-
+  const [orderItems, setOrderItems] = useState([])
 
   useEffect(() => {
     console.log('2323')
-  }, [])
+  }, [ReactRouter])
 
 
 
@@ -69,7 +69,7 @@ function App() {
     </header>
    
 
-    <Drawer drawerItems={drawerItems} isVisiable={isVisiable} setIsVisiable={setIsVisiable} />
+    <Drawer orderItems={orderItems} setOrderItems={setOrderItems} drawerItems={drawerItems} setDrawerItems={setDrawerItems} isVisiable={isVisiable} setIsVisiable={setIsVisiable} />
 
         <div style = {{display: "none"}}  className="overlay">
     <div className="drawer">

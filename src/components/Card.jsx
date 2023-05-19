@@ -20,10 +20,18 @@ const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
             pSetDrawerItems(pDrawerItems.filter((obj) => pTitle !== obj.pTitle))
     }
 
+    const [heartIcon, setHeartIcon] = useState(false)
+
+    function changeIcon(){
+        setHeartIcon(!heartIcon)
+    }
+
+
+
     return(
         <div className="card">
         <div>
-            <img src='/img/unliked.png' width={32} height={32} alt="Unliked" />
+            <img onClick={() => changeIcon()} src={heartIcon != false ? 'img/heartOn.png' : '/img/heart.png'} width={32} height={32} alt="Unliked" />
         </div>
         <img width={133} height={112} src={pImg} alt="Sneakers" />
         <h5>{pTitle}</h5>

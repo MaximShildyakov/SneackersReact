@@ -1,12 +1,31 @@
+import React, {useState} from "react"
 
 function Drawer(props){
+
+
+  const [isOrdered, setIsOrdered] = useState(false)
+
+
+  function makeOrder(drawerItems){
+    props.setOrderItems([...props.orderItems, drawerItems])
+    props.setDrawerItems([])
+    setIsOrdered(!isOrdered)
+
+  }
+
     return(
 
-<div  style={props.isVisiable ? {display: 'block'} : {display: 'none'}} className="overlay" onClick={() => props.setIsVisiable(!props.isVisiable)}>
+<div  style={props.isVisiable ? {display: 'block'} : {display: 'none'}} className="overlay">
 <div className="drawer">
   <h2>
     Корзина <img onClick={() => props.setIsVisiable(!props.isVisiable)} className="cu-p cursor" src="./img/btn-remove.png" alt="Remove" />
   </h2>
+
+
+  {isOrdered && 
+  <div style={{position: "absolute", top: '330px', right: '100px'}}><img src="img/complete-order.jpg" alt="You made an order"/>
+    <h3>You made an order</h3>
+   </div>}
 
   <div className="items">
     {
@@ -43,7 +62,7 @@ function Drawer(props){
         <b>1074 руб. </b>
       </li>
     </ul>
-    <button className="greenButton">
+    <button onClick={() => makeOrder(props.drawerItems)} className="greenButton">
       Оформить заказ <img src="/img/arrow.png" alt="Arrow" />
     </button>
   </div>

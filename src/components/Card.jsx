@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
 
 
     const [itemsCount, setItemsCount] = useState(0)
+
+
 
     function onAddToCart(){
         setItemsCount(!itemsCount)
@@ -26,12 +28,17 @@ const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
         setHeartIcon(!heartIcon)
     }
 
+    function deleteItems(){
+        setItemsCount(0)
+        pSetDrawerItems(pDrawerItems.filter((obj) => pTitle != obj.pTitle))
+    }
+
 
 
     return(
         <div className="card">
         <div>
-            <img onClick={() => changeIcon()} src={heartIcon != false ? 'img/heartOn.png' : '/img/heart.png'} width={32} height={32} alt="Unliked" />
+            <img onClick={() => changeIcon()} src={heartIcon != false ? '/img/sneakers/heartOn.png' : '/img/sneakers/heart.png'} width={32} height={32} alt="Unliked" />
         </div>
         <img width={133} height={112} src={pImg} alt="Sneakers" />
         <h5>{pTitle}</h5>
@@ -43,6 +50,9 @@ const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
                 <div>
                     <img className="plus" onClick={() => onAddToCart()}  width={32} height={32} src={itemsCount !== 0 ? "/img/btn-checked.svg" : "/img/plus.png"} alt="Plus" />
                     { itemsCount === 0 ? <></>  : <img className="plus" onClick={() => deleteFromCart(pTitle)}  width={32} height={32} src={"/img/minusicon.png"} alt="Del" />}
+
+
+                    {itemsCount && <img className="button" onClick={() => deleteItems()} width={31} height={31} src={'/img/cross.png'} alt='Del' /> } 
               </div>
                 
                  

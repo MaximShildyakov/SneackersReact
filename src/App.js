@@ -1,14 +1,17 @@
-import Card from "./components/Card";
-import Drawer from "./components/Drawer";
-import React, {useEffect, useState} from "react";
-import ReactRouter from "react";
 
+import React, {useEffect, useState, createContext} from "react";
+import ReactRouter from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import Orders from './Pages/Orders'
+import Home from './Pages/Home'
 
 
 function App() {
 
 
   const [isVisiable, setIsVisiable] = useState(false)
+
+
 
   const [drawerItems, setDrawerItems] = useState([])
 
@@ -44,87 +47,19 @@ function App() {
   ];
 
   return (
+
+    
     <div className="wrapper">
-    <header>
-      <div>
-        <img width={40} height={40} src="/img/logo.png" />
-        <div>
-          <h3>React Sneakers</h3>
-          <p>Магазин лучших кроссовок</p>
-        </div>
-      </div>
-      <ul>
-        <li className="cursor" onClick={() => setIsVisiable(!isVisiable)}>
-          <img  width={18} height={18} src="/img/cart.png" />
-          <span>1205 руб.</span>
-        </li>
-        <li>
-          <img width={18} height={18} src="/img/fav.png" />
-        </li>
+      <Routes>
+        <Route path='/' element={<Home orderItems={orderItems} setOrderItems={setOrderItems} drawerItems={drawerItems} setDrawerItems={setDrawerItems} isVisiable={isVisiable} 
+        setIsVisiable={setIsVisiable} sneakersArr={sneakersArr}/>}>
+        </Route>
 
-        <li>
-          <img width={18} height={18} src="/img/user.png" />
-        </li>
-      </ul>
-    </header>
+        <Route path="/orders" element={<Orders isVisiable={isVisiable} setIsVisiable={setIsVisiable} drawerItems={drawerItems} orderItems={orderItems} setOrderItems={setOrderItems}/>}>
+
+        </Route>
+      </Routes>
    
-
-    <Drawer orderItems={orderItems} setOrderItems={setOrderItems} drawerItems={drawerItems} setDrawerItems={setDrawerItems} isVisiable={isVisiable} setIsVisiable={setIsVisiable} />
-
-        <div style = {{display: "none"}}  className="overlay">
-    <div className="drawer">
-      <h2>
-        Корзина <img className="cu-p" src="./img/btn-remove.png" alt="Remove" />
-      </h2>
-
-      <div className="items">
-        <div className="cartItem">
-          <div
-            style={{ backgroundImage: 'url(/img/sneakers/1.png)' }}
-            className="cartItemImg"></div>
-
-          <div className="cartText">
-            <p>Мужские Кроссовки Nike Air Max 270</p>
-            <b>12 999 руб.</b>
-          </div>
-          <img className="removeBtn" src="/img/btn-remove.png" alt="Remove" />
-        </div>
-
-      </div>
-
-      <div className="cartTotalBlock">
-        <ul>
-          <li>
-            <span>Итого:</span>
-            <div></div>
-            <b>21 498 руб. </b>
-          </li>
-          <li>
-            <span>Налог 5%:</span>
-            <div></div>
-            <b>1074 руб. </b>
-          </li>
-        </ul>
-        <button className="greenButton">
-          Оформить заказ <img src="/img/arrow.png" alt="Arrow" />
-        </button>
-      </div>
-    </div>
-  </div>
-
-
-    <div className="content">
-          <h1>Все кроссовки</h1>
-          <div className="search-block">
-              <img src="/img/search.png" width={18} height={18} alt="Search" />
-              <input placeholder="Поиск..." />
-          </div>
-        
-    <div className="ds-f">
-         {sneakersArr.map((elem, index) => <Card pDrawerItems={drawerItems} pSetDrawerItems={setDrawerItems} pTitle={elem.title} pPrice={elem.price} pImg={elem.imageUrl} key={index}/>)}
-    </div>
-
-    </div>
   </div>
   );
 }

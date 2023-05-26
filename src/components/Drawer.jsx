@@ -1,9 +1,13 @@
 import React, {useState} from "react"
+import { useDispatch, useSelector } from 'react-redux'
+
 
 function Drawer(props){
 
 
   const [isOrdered, setIsOrdered] = useState(false)
+
+  const cash = useSelector( state => state.cash)
 
 
   function makeOrder(drawerItems){
@@ -18,12 +22,12 @@ function Drawer(props){
 <div  style={props.isVisiable ? {display: 'block'} : {display: 'none'}} className="overlay">
 <div className="drawer">
   <h2>
-    Корзина <img onClick={() => props.setIsVisiable(!props.isVisiable)} className="cu-p cursor" src="./img/btn-remove.png" alt="Remove" />
+    Корзина <img onClick={() => props.setIsVisiable(!props.isVisiable)} className="cu-p cursor" src='./img/btn-remove.png' alt="Remove" />
   </h2>
 
 
   {isOrdered && 
-  <div style={{position: "absolute", top: '330px', right: '100px'}}><img src="img/complete-order.jpg" alt="You made an order"/>
+  <div style={{position: "absolute", top: '330px', right: '100px'}}><img src='./img/complete-order.jpg' alt="You made an order"/>
     <h3>You made an order</h3>
    </div>}
 
@@ -40,7 +44,7 @@ function Drawer(props){
           <p>{obj.pTitle}</p>
           <b>{obj.pPrice} руб.</b>
         </div>
-        <img className="removeBtn" src="/img/btn-remove.png" alt="Remove" />
+        <img className="removeBtn" src='./img/btn-remove.png' alt="Remove" />
       </div>
       )
     }
@@ -54,7 +58,7 @@ function Drawer(props){
       <li>
         <span>Итого:</span>
         <div></div>
-        <b>21 498 руб. </b>
+        <b>{cash} руб. </b>
       </li>
       <li>
         <span>Налог 5%:</span>
@@ -63,7 +67,7 @@ function Drawer(props){
       </li>
     </ul>
     <button onClick={() => makeOrder(props.drawerItems)} className="greenButton">
-      Оформить заказ <img src="/img/arrow.png" alt="Arrow" />
+      Оформить заказ <img src='./img/arrow.png' alt="Arrow" />
     </button>
   </div>
 </div>

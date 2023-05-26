@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 
 const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
 
 
     const [itemsCount, setItemsCount] = useState(0)
 
-
+    const dispatch = useDispatch()
+    const cash = useSelector(state => state.cash)
 
     function onAddToCart(){
         setItemsCount(!itemsCount)
@@ -13,6 +15,7 @@ const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
         //     pDrawerItems.filter((elem) => elem != elem.pTitle)
         // }
         pSetDrawerItems([...pDrawerItems, {pImg, pPrice, pTitle}])
+        dispatch({type: "ADD-CASH", payload: pPrice })
         setItemsCount(itemsCount + 1)
 
     }
@@ -38,7 +41,7 @@ const Card = ({pImg, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
     return(
         <div className="card">
         <div>
-            <img onClick={() => changeIcon()} src={heartIcon != false ? '/img/sneakers/heartOn.png' : '/img/sneakers/heart.png'} width={32} height={32} alt="Unliked" />
+            <img onClick={() => changeIcon()} src={heartIcon != false ? '/img/heartOn.png' : '/img/heart.png'} width={32} height={32} alt="Unliked" />
         </div>
         <img width={133} height={112} src={pImg} alt="Sneakers" />
         <h5>{pTitle}</h5>

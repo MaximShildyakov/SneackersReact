@@ -32,7 +32,7 @@ function App() {
     { 
       title: 'Мужские Кроссовки Nike Air Max 270', 
       price: 15600, 
-      imageUrl: './img/sneakers/2.png' 
+      imageUrl: './img/sneakers/2.png', 
     },
     {
       title: 'Мужские Кроссовки Nike Blazer Mid Suede',

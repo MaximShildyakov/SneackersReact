@@ -2,11 +2,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 
 
-function Header({isVisible, setIsVisible}){
+function Header({isVisiable, setIsVisiable}){
 
     const dispatch = useDispatch()
     const cash = useSelector( state => state.cash)
-    console.log(cash)
 
     const addCash = () => {
         dispatch({type: "ADD-CASH"})
@@ -31,7 +30,7 @@ function Header({isVisible, setIsVisible}){
 
             </Link> 
             <ul>
-                <li className="cursor" onClick={() => setIsVisible(!isVisible)}>
+                <li className="cursor" onClick={() => setIsVisiable(!isVisiable)}>
                     <img width={18} height={18} src='./img/cart.png'/>
                     <span>{cash} pyб </span>
                 </li>

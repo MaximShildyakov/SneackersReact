@@ -11,6 +11,16 @@ code {
     monospace;
 }
 
+.cross{
+  position: absolute;
+  top: 30%;
+  left: 205px;
+  cursor: pointer;
+}
+
+.cross-input{
+  display: none;
+}
 
 .cursor {
   cursor: pointer;
@@ -162,7 +172,7 @@ li {
 
 
 
-.search-block {
+.search-block  {
   border: 1px solid #f3f3f3;
   border-radius: 10px;
   padding: 0 15px;
@@ -180,7 +190,7 @@ li {
   outline:none;
 }
 
-.search-block img{
+.search-block .search-img{
   width: 18px;
   height: 18px;
   position: absolute;

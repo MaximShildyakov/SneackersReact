@@ -10,6 +10,7 @@ import { createStore } from 'redux';
 
 const defaultState = {
     cash: 0,
+    inputValue: '',
 }
 
 
@@ -19,6 +20,10 @@ const reducer = (state = defaultState, action) => {
             return {...state, cash: state.cash + action.payload }
         case "GET-CASH":
             return {...state, cash: state.cash - action.payload}
+        case "ADD-VALUE":
+            return {...state, inputValue: state.inputValue = action.payload}
+        case "NONE-VALUE":
+            return {...state, inputValue: state.inputValue = ''}
         default:
             return state
     }

@@ -1,9 +1,10 @@
 
 import React, {useEffect, useState, createContext} from "react";
 import ReactRouter from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Form, Link, Route, Routes } from "react-router-dom";
 import Orders from './Pages/Orders'
 import Home from './Pages/Home'
+import NotFound from "./Pages/NotFound";
 
 
 function App() {
@@ -52,12 +53,20 @@ function App() {
     <div className="wrapper">
       <Routes>
         <Route path='/' element={<Home orderItems={orderItems} setOrderItems={setOrderItems} drawerItems={drawerItems} setDrawerItems={setDrawerItems} isVisiable={isVisiable} 
-        setIsVisiable={setIsVisiable} sneakersArr={sneakersArr}/>}>
+        setIsVisiable={setIsVisiable} sneakersArr={sneakersArr}/>} >
         </Route>
 
         <Route path="/orders" element={<Orders isVisiable={isVisiable} setIsVisiable={setIsVisiable} drawerItems={drawerItems} orderItems={orderItems} setOrderItems={setOrderItems}/>}>
 
         </Route>
+
+
+        <Route path="/form" element={<Form/>}>
+        </Route>
+
+        <Route path="*" element={<NotFound/>}>
+        </Route>
+
       </Routes>
    
   </div>

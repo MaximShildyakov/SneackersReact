@@ -34,7 +34,7 @@ function Home({drawerItems, setDrawerItems, orderItems, setOrderItems, isVisiabl
             </div>
           
         <div className="ds-f">
-           {sneakersArr.map((elem, index) => <Card pTitle={elem.title} pPrice={elem.price} 
+           {sneakersArr.filter((elem, index) => elem.title.toLowerCase().includes(inputValue.toLowerCase())).map((elem, index) => <Card pTitle={elem.title} pPrice={elem.price} 
            pUrl={elem.imageUrl} pDrawerItems={drawerItems} pSetDrawerItems={setDrawerItems} key={index}/>) }
         </div>
         </div>

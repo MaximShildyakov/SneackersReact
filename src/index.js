@@ -11,6 +11,7 @@ import { createStore } from 'redux';
 const defaultState = {
     cash: 0,
     inputValue: '',
+    favorites: [],
 }
 
 
@@ -24,6 +25,12 @@ const reducer = (state = defaultState, action) => {
             return {...state, inputValue: state.inputValue = action.payload}
         case "NONE-VALUE":
             return {...state, inputValue: state.inputValue = ''}
+        case "ADD-TO-FAVORITES":
+            return {...state, favorites: [...state.favorites, action.payload]
+            }
+        case "REMOVE-FROM-FAVORITES":
+            console.log(action.payload)
+            return  {...state, favorites: state.favorites.filter((elem)=> elem !== action.payload)}
         default:
             return state
     }

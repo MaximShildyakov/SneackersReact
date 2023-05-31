@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 
 
 function Header({isVisiable, setIsVisiable}){
@@ -14,7 +14,6 @@ function Header({isVisiable, setIsVisiable}){
     const getCash = () => {
         dispatch({type: "GET-CASH"})
     }
-
 
 
     return(
@@ -34,9 +33,15 @@ function Header({isVisiable, setIsVisiable}){
                     <img width={18} height={18} src='./img/cart.png'/>
                     <span>{cash} pyб </span>
                 </li>
-                <li>
-                    <img width={18} height={18} src='./img/fav.png'></img>
-                </li>
+                <NavLink to="favorites">
+                    <li>
+                        <img width={18} height={18} src='./img/fav.png'>
+                      
+                        </img>
+                    </li>
+                </NavLink>
+
+               
             <Link to="/orders">
                 <li>
                     <img width={18} height={18} src='./img/user.png' />

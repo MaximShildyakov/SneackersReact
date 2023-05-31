@@ -8,6 +8,8 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
 
     const dispatch = useDispatch()
     const cash = useSelector(state => state.cash)
+    const favorites = useSelector(state => state.favorites)
+    // const favorites = useSelector(state => state.favorites)
 
     function onAddToCart(){
         setItemsCount(!itemsCount)
@@ -16,6 +18,7 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
         // }
         pSetDrawerItems([...pDrawerItems, {pUrl, pPrice, pTitle}])
         dispatch({type: "ADD-CASH", payload: pPrice })
+   
         setItemsCount(itemsCount + 1)
 
     }
@@ -27,9 +30,25 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
 
     const [heartIcon, setHeartIcon] = useState(false)
 
-    function changeIcon(){
-        setHeartIcon(!heartIcon)
+
+    function changeIcon(Naming, Costing, Reference){
+
+        if(!heartIcon){
+            dispatch({type: "ADD-TO-FAVORITES", payload: {title: Naming, price: Costing, imageURL: Reference}})
+            setHeartIcon(!heartIcon)
+            console.log(favorites)
+        }
+        else{
+            dispatch({type: "REMOVE-FROM-FAVORITES", payload: {title: Naming, price: Costing, imageURL: Reference}})
+            setHeartIcon(!heartIcon)
+            console.log(favorites)
+        }
+        // dispatch({type: "ADD-TO-FAVORITES", payload: {title: Naming, price: Costing, imageURL: Reference}})
+        // console.log(favorites)
+
+
     }
+
 
     function deleteItems(){
         setItemsCount(0)
@@ -41,7 +60,7 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
     return(
         <div className="card">
         <div>
-            <img onClick={() => changeIcon()} src={heartIcon != false ? '/img/heartOn.png' : '/img/heart.png'} width={32} height={32} alt="Unliked" />
+            <img onClick={() => changeIcon(pTitle, pPrice, pUrl)} src={heartIcon != false ? '/img/heartOn.png' : '/img/heart.png'} width={32} height={32} alt="Unliked" />
         </div>
         <img width={133} height={112} src={pUrl} alt="Sneakers" />
         <h5>{pTitle}</h5>
@@ -67,5 +86,6 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
         </div>
     )
 }
+
 
 export default Card

@@ -5,6 +5,7 @@ import { Form, Link, Route, Routes } from "react-router-dom";
 import Orders from './Pages/Orders'
 import Home from './Pages/Home'
 import NotFound from "./Pages/NotFound";
+import Favorites from "./Pages/Favorites";
 
 
 function App() {
@@ -63,6 +64,11 @@ function App() {
 
         <Route path="/form" element={<Form/>}>
         </Route>
+
+
+        <Route path="/favorites" element={<Favorites/>} >
+        </Route>
+
 
         <Route path="*" element={<NotFound/>}>
         </Route>

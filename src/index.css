@@ -11,6 +11,12 @@ code {
     monospace;
 }
 
+/* .Fav{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+} */
+
 .cross{
   position: absolute;
   top: 30%;

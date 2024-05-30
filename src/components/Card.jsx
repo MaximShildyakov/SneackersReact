@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 
-const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
+ export default function Card  ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) {
 
 
     const [itemsCount, setItemsCount] = useState(0)
@@ -12,7 +12,7 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
     // const favorites = useSelector(state => state.favorites)
 
     function onAddToCart(){
-        setItemsCount(!itemsCount)
+        // setItemsCount(!itemsCount)
         // if(pDrawerItems.indexOf((pTitle, pUrl, pPrice)) != -1){
         //     pDrawerItems.filter((elem) => elem != elem.pTitle)
         // }
@@ -24,8 +24,10 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
     }
 
     function deleteFromCart(pTitle){
-            setItemsCount(0)
+            // setItemsCount(0)
+            setItemsCount(itemsCount - 1)
             pSetDrawerItems(pDrawerItems.filter((obj) => pTitle !== obj.pTitle))
+            dispatch({type: "GET-CASH", payload: pPrice })
     }
 
     const [heartIcon, setHeartIcon] = useState(false)
@@ -37,11 +39,14 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
             dispatch({type: "ADD-TO-FAVORITES", payload: {title: Naming, price: Costing, imageURL: Reference}})
             setHeartIcon(!heartIcon)
             console.log(favorites)
+            console.log(favorites.length)
+            console.log(1)
         }
         else{
             dispatch({type: "REMOVE-FROM-FAVORITES", payload: {title: Naming, price: Costing, imageURL: Reference}})
             setHeartIcon(!heartIcon)
             console.log(favorites)
+            console.log(0)
         }
         // dispatch({type: "ADD-TO-FAVORITES", payload: {title: Naming, price: Costing, imageURL: Reference}})
         // console.log(favorites)
@@ -51,8 +56,10 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
 
 
     function deleteItems(){
+        console.log("deleteItems was called")
         setItemsCount(0)
         pSetDrawerItems(pDrawerItems.filter((obj) => pTitle != obj.pTitle))
+        dispatch({type: "ZERO_CASH"})
     }
 
 
@@ -71,10 +78,11 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
             </div>
                 <div>
                     <img className="plus" onClick={() => onAddToCart()}  width={32} height={32} src={itemsCount !== 0 ? "/img/btn-checked.svg" : "/img/plus.png"} alt="Plus" />
-                    { itemsCount === 0 ? <></>  : <img className="plus" onClick={() => deleteFromCart(pTitle)}  width={32} height={32} src={"/img/minusicon.png"} alt="Del" />}
+                    { itemsCount === 0 ? <React.Fragment /> : <img className="plus" onClick={() => deleteFromCart(pTitle)}  width={32} height={32} src={"/img/minusicon.png"} alt="Del" />}
 
 
-                    {itemsCount && <img className="button" onClick={() => deleteItems()} width={31} height={31} src={'/img/cross.png'} alt='Del' /> } 
+                    {itemsCount && <img className="button" onClick={() => deleteItems()} width={31} height={31} src={'/img/btn-remove.png'} alt='Del' /> } 
+                
               </div>
                 
                  
@@ -86,6 +94,3 @@ const Card = ({pUrl, pPrice, pTitle, pDrawerItems, pSetDrawerItems}) => {
         </div>
     )
 }
-
-
-export default Card

@@ -4,7 +4,7 @@ import Drawer from "../components/Drawer";
 import Header from '../components/Header';
 import React, {useState} from "react";
 
-function Home({drawerItems, setDrawerItems, orderItems, setOrderItems, isVisiable, setIsVisiable, sneakersArr}){
+function Home({drawerItems, setDrawerItems, orderItems, setOrderItems, isVisiable, setIsVisiable, sneakersArr, deleteItems}){
 
   const dispatch = useDispatch()
 
@@ -13,7 +13,8 @@ function Home({drawerItems, setDrawerItems, orderItems, setOrderItems, isVisiabl
 
   function changeInput(e){
     dispatch({type: "ADD-VALUE", payload: e.target.value })
-    console.log(inputValue)
+
+    // console.log(inputValue)
   }
 
 
@@ -23,7 +24,7 @@ function Home({drawerItems, setDrawerItems, orderItems, setOrderItems, isVisiabl
       <Header isVisiable={isVisiable} setIsVisiable={setIsVisiable} />
 
       <Drawer drawerItems={drawerItems} setDrawerItems={setDrawerItems} isVisiable={isVisiable} setIsVisiable={setIsVisiable} 
-        orderItems={orderItems} setOrderItems={setOrderItems} />
+        orderItems={orderItems} setOrderItems={setOrderItems} deleteItems={deleteItems} />
      
       <div className="content">
             <h1> {inputValue? `Search for ${inputValue}` : `All sneakers`}</h1>

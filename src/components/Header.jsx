@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink, useLocation} from 'react-router-dom'
 
 
 function Header({isVisiable, setIsVisiable}){
@@ -13,6 +13,15 @@ function Header({isVisiable, setIsVisiable}){
 
     const getCash = () => {
         dispatch({type: "GET-CASH"})
+    }
+    const location = useLocation();
+    let destination;
+
+    // Условно задаем путь назначения
+    if (location.pathname === '/favorites') {
+        destination = '/';
+    } else {
+        destination = '/favorites';
     }
 
 
@@ -33,7 +42,7 @@ function Header({isVisiable, setIsVisiable}){
                     <img width={18} height={18} src='./img/cart.png'/>
                     <span>{cash} pyб </span>
                 </li>
-                <NavLink to="favorites">
+                <NavLink to={destination}>
                     <li>
                         <img width={18} height={18} src='./img/fav.png'>
                       

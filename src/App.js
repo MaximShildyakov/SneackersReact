@@ -8,7 +8,8 @@ import NotFound from "./Pages/NotFound";
 import Favorites from "./Pages/Favorites";
 
 
-function App() {
+
+function App({deleteItems}) {
 
 
   const [isVisiable, setIsVisiable] = useState(false)
@@ -54,10 +55,10 @@ function App() {
     <div className="wrapper">
       <Routes>
         <Route path='/' element={<Home orderItems={orderItems} setOrderItems={setOrderItems} drawerItems={drawerItems} setDrawerItems={setDrawerItems} isVisiable={isVisiable} 
-        setIsVisiable={setIsVisiable} sneakersArr={sneakersArr}/>} >
+        setIsVisiable={setIsVisiable} sneakersArr={sneakersArr} deleteItems={deleteItems}/>} >
         </Route>
 
-        <Route path="/orders" element={<Orders isVisiable={isVisiable} setIsVisiable={setIsVisiable} drawerItems={drawerItems} orderItems={orderItems} setOrderItems={setOrderItems}/>}>
+        <Route path="/orders" element={<Orders isVisiable={isVisiable} setIsVisiable={setIsVisiable} drawerItems={drawerItems} orderItems={orderItems} setOrderItems={setOrderItems} setDrawerItems={setDrawerItems} />}>
 
         </Route>
 

@@ -16,7 +16,7 @@ export default function Favorities(){
                         
                     </div>
 
-                    <div className="Fav">
+                    <div className="card">
                         <p>{elem.title}</p>
                         <img width={133} height={112} src={elem.imageURL} alt="Sneakers" />
                         <h3>{elem.price}</h3>

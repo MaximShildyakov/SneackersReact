@@ -9,12 +9,18 @@ function Drawer(props){
 
   const cash = useSelector( state => state.cash)
 
+  const dispatch = useDispatch()
+
 
   function makeOrder(drawerItems){
     props.setOrderItems([...props.orderItems, drawerItems])
     props.setDrawerItems([])
     setIsOrdered(!isOrdered)
+    props.deleteItems();
+    dispatch({type: "ZERO_CASH"})
+    console.log("makeOrder was called")
 
+  
   }
 
     return(
@@ -63,7 +69,7 @@ function Drawer(props){
       <li>
         <span>Налог 5%:</span>
         <div></div>
-        <b>1074 руб. </b>
+        <b>{parseFloat((cash * 0.05).toFixed(2))} руб. </b>
       </li>
     </ul>
     <button onClick={() => makeOrder(props.drawerItems)} className="greenButton">

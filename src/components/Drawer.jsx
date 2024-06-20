@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import { useDispatch, useSelector } from 'react-redux'
 
 
-function Drawer(props){
+function Drawer({drawerItems, setDrawerItems, isVisiable, setIsVisiable, orderItems, setOrderItems, deleteItems}){
 
 
   const [isOrdered, setIsOrdered] = useState(false)
@@ -12,23 +12,26 @@ function Drawer(props){
   const dispatch = useDispatch()
 
 
-  function makeOrder(drawerItems){
-    props.setOrderItems([...props.orderItems, drawerItems])
-    props.setDrawerItems([])
+  function makeOrder(){
+    console.log(drawerItems)
+    setOrderItems([...orderItems, drawerItems])
+    setDrawerItems([])
     setIsOrdered(!isOrdered)
-    props.deleteItems();
-    dispatch({type: "ZERO_CASH"})
-    console.log("makeOrder was called")
+    // deleteItems();
+    // dispatch({type: "ZERO_CASH"})
+    // console.log("makeOrder was called")
+    // // setDrawerItems(DrawerItems.filter((obj) => Title !== obj.pTitle))
+    // dispatch({type: "ZERO_CASH"})
 
   
   }
 
     return(
 
-<div  style={props.isVisiable ? {display: 'block'} : {display: 'none'}} className="overlay">
+<div  style={isVisiable ? {display: 'block'} : {display: 'none'}} className="overlay">
 <div className="drawer">
   <h2>
-    Корзина <img onClick={() => props.setIsVisiable(!props.isVisiable)} className="cu-p cursor" src='./img/btn-remove.png' alt="Remove" />
+    Корзина <img onClick={() => setIsVisiable(!isVisiable)} className="cu-p cursor" src='./img/btn-remove.png' alt="Remove" />
   </h2>
 
 
@@ -39,13 +42,14 @@ function Drawer(props){
 
   <div className="items">
     {
-      props.drawerItems.map( (obj, index) => 
+      drawerItems.map( (obj, index) =>
+
 
         <div key={index} className="cartItem">
-        <div
-          style={{ backgroundImage:  `url(${obj.pImg})` }}
-          className="cartItemImg"></div>
-  
+        {/*<div*/}
+        {/*  style={{ backgroundImage:  `url(${obj.pImg})` }}*/}
+        {/*  className="cartItemImg"></div>*/}
+          <img className="cartItemImg" src={obj.pUrl} alt="Sneakers" />
         <div className="cartText">
           <p>{obj.pTitle}</p>
           <b>{obj.pPrice} руб.</b>
@@ -72,7 +76,7 @@ function Drawer(props){
         <b>{parseFloat((cash * 0.05).toFixed(2))} руб. </b>
       </li>
     </ul>
-    <button onClick={() => makeOrder(props.drawerItems)} className="greenButton">
+    <button onClick={() => makeOrder()} className="greenButton">
       Оформить заказ <img src='./img/arrow.png' alt="Arrow" />
     </button>
   </div>

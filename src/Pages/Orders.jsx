@@ -7,6 +7,7 @@ function Orders({isVisiable, setIsVisiable, drawerItems ,orderItems, setOrderIte
     console.log(orderItems.length)
 
     function delHistoryofOrders(){
+        console.log(orderItems)
         setOrderItems([])
     }
     return(

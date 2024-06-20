@@ -6,14 +6,16 @@ export default function Favorities(){
 
    const favorites = useSelector(state => state.favorites)
 
+
     return(
     <>
         <Header/>
         <div className="ds-f">
-            {favorites.map((elem, index) => 
+            {favorites.map((elem, index) =>
+
                 <div key={index}>
                     <div>
-                        
+
                     </div>
 
                     <div className="card">

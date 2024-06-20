@@ -58,7 +58,7 @@ import { useDispatch, useSelector } from 'react-redux'
     function deleteItems(){
         console.log("deleteItems was called")
         setItemsCount(0)
-        pSetDrawerItems(pDrawerItems.filter((obj) => pTitle != obj.pTitle))
+        pSetDrawerItems(pDrawerItems.filter((obj) => pTitle !== obj.pTitle))
         dispatch({type: "ZERO_CASH"})
     }
 
@@ -67,7 +67,7 @@ import { useDispatch, useSelector } from 'react-redux'
     return(
         <div className="card">
         <div>
-            <img onClick={() => changeIcon(pTitle, pPrice, pUrl)} src={heartIcon != false ? '/img/heartOn.png' : '/img/heart.png'} width={32} height={32} alt="Unliked" />
+            <img onClick={() => changeIcon(pTitle, pPrice, pUrl)} src={heartIcon !== false ? '/img/heartOn.png' : '/img/heart.png'} width={32} height={32} alt="Unliked" />
         </div>
         <img width={133} height={112} src={pUrl} alt="Sneakers" />
         <h5>{pTitle}</h5>
